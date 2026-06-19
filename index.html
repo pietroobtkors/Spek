@@ -14,6 +14,16 @@
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5L1EF6Q3PL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5L1EF6Q3PL');
+  </script>
 </head>
 <body data-theme="dark" class="spek-v2">
   
@@ -35,7 +45,7 @@
         <a href="#donate">Support the project</a>
       </nav>
       <div class="nav-actions">
-        <a href="https://chromewebstore.google.com/detail/spek/cfhbhhinhgdnhlhmnkkgmfgmeddamhnd" target="_blank" rel="noreferrer" class="ds-button ds-button--primary nav-cta" style="text-decoration: none;">Add to Chrome</a>
+        <a href="https://chromewebstore.google.com/detail/spek/cfhbhhinhgdnhlhmnkkgmfgmeddamhnd" target="_blank" rel="noreferrer" class="ds-button ds-button--primary nav-cta" style="text-decoration: none;" onclick="gtag('event', 'click_nav_install');">Add to Chrome</a>
       </div>
     </div>
   </header>
@@ -55,10 +65,10 @@
           Capture exact dimensions, gaps, colors, and fonts directly from your browser, reducing adjustment turnaround times and making the Design QA process highly efficient.
         </p>
         <div class="hero-cta-group">
-          <a href="https://chromewebstore.google.com/detail/spek/cfhbhhinhgdnhlhmnkkgmfgmeddamhnd" target="_blank" rel="noreferrer" class="ds-button ds-button--primary ds-button--large cta-glow" style="text-decoration: none; display: inline-flex;">
+          <a href="https://chromewebstore.google.com/detail/spek/cfhbhhinhgdnhlhmnkkgmfgmeddamhnd" target="_blank" rel="noreferrer" class="ds-button ds-button--primary ds-button--large cta-glow" style="text-decoration: none; display: inline-flex;" onclick="gtag('event', 'click_hero_install');">
             Download Extension For Free
           </a>
-          <a href="#problem" class="cta-text">See how it works ↓</a>
+          <a href="#problem" class="cta-text" onclick="gtag('event', 'click_hero_scroll');">See how it works ↓</a>
         </div>
 
         <div class="hero-visual-wrapper">
@@ -290,10 +300,10 @@ Target: div.css-175oi2r, Visible text: "New Transaction"</pre>
             <h2 class="donate-title">Support the project, buy me a coffee!</h2>
             <p class="donate-text">Spek is 100% free. If this tool is saving you hours of design QA, consider buying me a coffee to keep the updates flowing!</p>
             <div class="donate-buttons">
-              <a href="https://ko-fi.com/pietrobampi" target="_blank" rel="noreferrer" class="ds-button ds-button--primary donate-btn kofi-btn" style="text-decoration: none; display: inline-flex;">
+              <a href="https://ko-fi.com/pietrobampi" target="_blank" rel="noreferrer" class="ds-button ds-button--primary donate-btn kofi-btn" style="text-decoration: none; display: inline-flex;" onclick="gtag('event', 'click_donate_kofi');">
                 <span>Buy me a Coffee</span>
               </a>
-              <button class="ds-button ds-button--secondary donate-btn pix-btn" type="button">
+              <button class="ds-button ds-button--secondary donate-btn pix-btn" type="button" onclick="gtag('event', 'click_donate_pix_modal');">
                 <span>Support via Pix</span>
               </button>
             </div>
@@ -315,7 +325,7 @@ Target: div.css-175oi2r, Visible text: "New Transaction"</pre>
         </div>
         <div class="footer-links-group">
           <h4>Product</h4>
-          <a href="https://chromewebstore.google.com/detail/spek/cfhbhhinhgdnhlhmnkkgmfgmeddamhnd" target="_blank" rel="noreferrer">Chrome Web Store</a>
+          <a href="https://chromewebstore.google.com/detail/spek/cfhbhhinhgdnhlhmnkkgmfgmeddamhnd" target="_blank" rel="noreferrer" onclick="gtag('event', 'click_footer_install');">Chrome Web Store</a>
         </div>
         <div class="footer-links-group">
           <h4>Legal</h4>
