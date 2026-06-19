@@ -1,0 +1,325 @@
+/* Design Review tokens
+   Source: Figma Variables Collections: Colors, Sizing, Typography
+   Includes: local Text Styles and Effect Styles
+*/
+
+:root {
+  /* Colors / primitives */
+  --primitives-black-100: rgba(0, 0, 0, 0.05);
+  --primitives-black-200: rgba(0, 0, 0, 0.1);
+  --primitives-black-300: rgba(0, 0, 0, 0.2);
+  --primitives-black-400: rgba(0, 0, 0, 0.3);
+  --primitives-black-500: rgba(0, 0, 0, 0.5);
+  --primitives-black-600: rgba(0, 0, 0, 0.8);
+  --primitives-black-700: rgba(0, 0, 0, 0.85);
+  --primitives-black-800: rgba(0, 0, 0, 0.9);
+  --primitives-black-900: rgba(0, 0, 0, 0.95);
+  --primitives-black-1000: #000000;
+
+  --primitives-white-100: rgba(255, 255, 255, 0.05);
+  --primitives-white-200: rgba(255, 255, 255, 0.1);
+  --primitives-white-300: rgba(255, 255, 255, 0.2);
+  --primitives-white-400: rgba(255, 255, 255, 0.4);
+  --primitives-white-500: rgba(255, 255, 255, 0.7);
+  --primitives-white-600: rgba(255, 255, 255, 0.8);
+  --primitives-white-700: rgba(255, 255, 255, 0.85);
+  --primitives-white-800: rgba(255, 255, 255, 0.9);
+  --primitives-white-900: rgba(255, 255, 255, 0.95);
+  --primitives-white-1000: #FFFFFF;
+
+  --primitives-grey-100: #F5F5F5;
+  --primitives-grey-200: #E6E6E6;
+  --primitives-grey-300: #D9D9D9;
+  --primitives-grey-400: #B3B3B3;
+  --primitives-grey-500: #757575;
+  --primitives-grey-600: #444444;
+  --primitives-grey-700: #383838;
+  --primitives-grey-800: #2C2C2C;
+  --primitives-grey-900: #1E1E1E;
+  --primitives-grey-1000: #111111;
+
+  --primitives-pink-100: #FFF0FE;
+  --primitives-pink-200: #FFE0FC;
+  --primitives-pink-300: #FFBDF2;
+  --primitives-pink-400: #FF99E0;
+  --primitives-pink-500: #FF24BD;
+  --primitives-pink-600: #EA10AC;
+  --primitives-pink-700: #CB0B96;
+  --primitives-pink-800: #971172;
+  --primitives-pink-900: #5F114C;
+  --primitives-pink-1000: #451138;
+
+  --primitives-green-100: #EBFFEE;
+  --primitives-green-200: #CFF7D3;
+  --primitives-green-300: #AFF4C6;
+  --primitives-green-400: #85E0A3;
+  --primitives-green-500: #14AE5C;
+  --primitives-green-600: #009951;
+  --primitives-green-700: #008043;
+  --primitives-green-800: #036838;
+  --primitives-green-900: #024626;
+  --primitives-green-1000: #083A23;
+
+  --primitives-yellow-100: #FFFBEB;
+  --primitives-yellow-200: #FFF1C2;
+  --primitives-yellow-300: #FFE8A3;
+  --primitives-yellow-400: #FFD966;
+  --primitives-yellow-500: #FFCD29;
+  --primitives-yellow-600: #FFC21A;
+  --primitives-yellow-700: #FAB815;
+  --primitives-yellow-800: #EBA611;
+  --primitives-yellow-900: #DD940E;
+  --primitives-yellow-1000: #B86200;
+
+  --primitives-red-100: #FFF5F5;
+  --primitives-red-200: #FFE2E0;
+  --primitives-red-300: #FFC7C2;
+  --primitives-red-400: #FFAFA3;
+  --primitives-red-500: #F24822;
+  --primitives-red-600: #DC3412;
+  --primitives-red-700: #BD2915;
+  --primitives-red-800: #9F1F18;
+  --primitives-red-900: #771208;
+  --primitives-red-1000: #660E0B;
+
+  /* Colors / semantic */
+  --semantic-bg-brand-default: var(--primitives-pink-500);
+  --semantic-bg-brand-secondary: var(--primitives-pink-700);
+  --semantic-bg-brand-tertiary: var(--primitives-pink-800);
+  --semantic-bg-brand-subtle: var(--primitives-pink-300);
+  --semantic-bg-default-default: var(--primitives-white-1000);
+  --semantic-bg-default-secondary: var(--primitives-grey-100);
+  --semantic-bg-default-tertiary: var(--primitives-grey-200);
+  --semantic-bg-default-overlay: var(--primitives-black-300);
+  --semantic-bg-default-dark: var(--primitives-grey-900);
+  --semantic-border-brand-default: var(--primitives-pink-300);
+  --semantic-border-brand-strong: var(--primitives-pink-600);
+  --semantic-border-default-default: var(--primitives-grey-200);
+  --semantic-border-default-strong: var(--primitives-grey-800);
+  --semantic-border-success-success: var(--primitives-green-300);
+  --semantic-border-warning-warning: var(--primitives-yellow-300);
+  --semantic-border-danger-danger: var(--primitives-red-300);
+  --semantic-icon-and-text-default-default: var(--primitives-black-800);
+  --semantic-icon-and-text-default-inverse: var(--primitives-white-1000);
+  --semantic-icon-and-text-default-secondary: var(--primitives-black-500);
+  --semantic-icon-and-text-default-disabled: var(--primitives-black-400);
+  --semantic-icon-and-text-default-light: var(--primitives-white-1000);
+  --semantic-icon-and-text-brand-default: var(--primitives-pink-600);
+  --semantic-icon-and-text-brand-secondary: var(--primitives-pink-400);
+  --semantic-icon-and-text-success-default: var(--primitives-green-500);
+  --semantic-icon-and-text-warning-default: var(--primitives-yellow-500);
+  --semantic-icon-and-text-danger-default: var(--primitives-red-500);
+
+  /* Sizing */
+  --spacers-spacer-0: 0px;
+  --spacers-spacer-1: 4px;
+  --spacers-spacer-2: 8px;
+  --spacers-spacer-3: 16px;
+  --spacers-spacer-4: 24px;
+  --spacers-spacer-5: 32px;
+  --spacers-spacer-6: 40px;
+  --radius-radius-none: 0px;
+  --radius-radius-small: 2px;
+  --radius-radius-medium: 5px;
+  --radius-radius-large: 13px;
+  --radius-radius-full: 9999px;
+
+  /* Typography variables */
+  --font-family-default: Inter;
+  --font-family-display: "DM Sans";
+  --font-family-mono: "Roboto Mono";
+  --font-weight-default: 450;
+  --font-weight-medium: 450;
+  --font-weight-strong: 550;
+  --font-weight-heavy: 550;
+
+  --body-large-font-family: Inter;
+  --body-large-font-size: 13px;
+  --body-large-font-weight: 450;
+  --body-large-line-height: 22px;
+  --body-large-letter-spacing: -0.0025em;
+  --body-large-strong-font-family: Inter;
+  --body-large-strong-font-size: 13px;
+  --body-large-strong-font-weight: 550;
+  --body-large-strong-line-height: 22px;
+  --body-large-strong-letter-spacing: -0.0025em;
+
+  --body-medium-font-family: Inter;
+  --body-medium-font-size: 11px;
+  --body-medium-font-weight: 450;
+  --body-medium-line-height: 16px;
+  --body-medium-letter-spacing: 0.005em;
+  --body-medium-strong-font-family: Inter;
+  --body-medium-strong-font-size: 11px;
+  --body-medium-strong-font-weight: 550;
+  --body-medium-strong-line-height: 16px;
+  --body-medium-strong-letter-spacing: 0.005em;
+
+  --body-small-font-family: Inter;
+  --body-small-font-size: 9px;
+  --body-small-font-weight: 450;
+  --body-small-line-height: 14px;
+  --body-small-letter-spacing: 0.005em;
+  --body-small-strong-font-family: Inter;
+  --body-small-strong-font-size: 9px;
+  --body-small-strong-font-weight: 550;
+  --body-small-strong-line-height: 14px;
+  --body-small-strong-letter-spacing: 0.005em;
+
+  --heading-display-font-family: "DM Sans";
+  --heading-display-font-size: 48px;
+  --heading-display-font-weight: 450;
+  --heading-display-line-height: 56px;
+  --heading-display-letter-spacing: -0.03em;
+  --heading-large-font-family: Inter;
+  --heading-large-font-size: 24px;
+  --heading-large-font-weight: 550;
+  --heading-large-line-height: 32px;
+  --heading-large-letter-spacing: -0.017em;
+  --heading-medium-font-family: Inter;
+  --heading-medium-font-size: 15px;
+  --heading-medium-font-weight: 550;
+  --heading-medium-line-height: 25px;
+  --heading-medium-letter-spacing: -0.005em;
+  --heading-small-font-family: Inter;
+  --heading-small-font-size: 13px;
+  --heading-small-font-weight: 550;
+  --heading-small-line-height: 22px;
+  --heading-small-letter-spacing: -0.0025em;
+
+  /* Text styles */
+  --text-style-body-body-large-strong-font-family: Inter;
+  --text-style-body-body-large-strong-font-size: 13px;
+  --text-style-body-body-large-strong-font-weight: 500;
+  --text-style-body-body-large-strong-line-height: 22px;
+  --text-style-body-body-large-strong-letter-spacing: -0.0025em;
+  --text-style-body-body-large-font-family: Inter;
+  --text-style-body-body-large-font-size: 13px;
+  --text-style-body-body-large-font-weight: 400;
+  --text-style-body-body-large-line-height: 22px;
+  --text-style-body-body-large-letter-spacing: -0.0025em;
+  --text-style-body-body-medium-strong-font-family: Inter;
+  --text-style-body-body-medium-strong-font-size: 11px;
+  --text-style-body-body-medium-strong-font-weight: 600;
+  --text-style-body-body-medium-strong-line-height: 16px;
+  --text-style-body-body-medium-strong-letter-spacing: 0.005em;
+  --text-style-body-body-medium-font-family: Inter;
+  --text-style-body-body-medium-font-size: 11px;
+  --text-style-body-body-medium-font-weight: 500;
+  --text-style-body-body-medium-line-height: 16px;
+  --text-style-body-body-medium-letter-spacing: 0.005em;
+  --text-style-body-body-small-strong-font-family: Inter;
+  --text-style-body-body-small-strong-font-size: 9px;
+  --text-style-body-body-small-strong-font-weight: 500;
+  --text-style-body-body-small-strong-line-height: 14px;
+  --text-style-body-body-small-strong-letter-spacing: 0.005em;
+  --text-style-body-body-small-font-family: Inter;
+  --text-style-body-body-small-font-size: 9px;
+  --text-style-body-body-small-font-weight: 400;
+  --text-style-body-body-small-line-height: 14px;
+  --text-style-body-body-small-letter-spacing: 0.005em;
+  --text-style-heading-display-font-family: "DM Sans";
+  --text-style-heading-display-font-size: 48px;
+  --text-style-heading-display-font-weight: 500;
+  --text-style-heading-display-line-height: 56px;
+  --text-style-heading-display-letter-spacing: -0.03em;
+  --text-style-heading-heading-large-font-family: Inter;
+  --text-style-heading-heading-large-font-size: 24px;
+  --text-style-heading-heading-large-font-weight: 600;
+  --text-style-heading-heading-large-line-height: 32px;
+  --text-style-heading-heading-large-letter-spacing: -0.017em;
+  --text-style-heading-heading-medium-font-family: Inter;
+  --text-style-heading-heading-medium-font-size: 11px;
+  --text-style-heading-heading-medium-font-weight: 600;
+  --text-style-heading-heading-medium-line-height: 25px;
+  --text-style-heading-heading-medium-letter-spacing: -0.005em;
+  --text-style-heading-heading-small-font-family: Inter;
+  --text-style-heading-heading-small-font-size: 13px;
+  --text-style-heading-heading-small-font-weight: 600;
+  --text-style-heading-heading-small-line-height: 22px;
+  --text-style-heading-heading-small-letter-spacing: -0.0025em;
+
+  /* Effect styles */
+  --effect-light-elevation-100-canvas: 0px 1px 3px 0px rgba(0, 0, 0, 0.15), 0px 0px 0.5px 0px rgba(0, 0, 0, 0.3);
+  --effect-light-elevation-200-canvas: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 3px 8px 0px rgba(0, 0, 0, 0.1), 0px 0px 0.5px 0px rgba(0, 0, 0, 0.18);
+  --effect-light-elevation-300-tooltip: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 5px 12px 0px rgba(0, 0, 0, 0.13), 0px 0px 0.5px 0px rgba(0, 0, 0, 0.15);
+  --effect-light-elevation-400-menu-panel: 0px 2px 5px 0px rgba(0, 0, 0, 0.15), 0px 10px 16px 0px rgba(0, 0, 0, 0.12), 0px 0px 0.5px 0px rgba(0, 0, 0, 0.12);
+  --effect-light-elevation-500-modal-window: 0px 2px 5px 0px rgba(0, 0, 0, 0.15), 0px 10px 24px 0px rgba(0, 0, 0, 0.18), 0px 0px 0.5px 0px rgba(0, 0, 0, 0.08);
+  --effect-dark-elevation-100-canvas: 0px 1px 3px 0px rgba(0, 0, 0, 0.4), inset 0px 0px 0.5px 0px rgba(255, 255, 255, 0.3), inset 0px 0.5px 0px 0px rgba(255, 255, 255, 0.1), 0px 0px 0.5px 0px rgba(0, 0, 0, 0.5);
+  --effect-dark-elevation-200-canvas: 0px 1px 3px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0.5px 0px rgba(255, 255, 255, 0.3), 0px 3px 8px 0px rgba(0, 0, 0, 0.35), inset 0px 0.5px 0px 0px rgba(255, 255, 255, 0.08);
+  --effect-dark-elevation-300-tooltip: 0px 1px 3px 0px rgba(0, 0, 0, 0.5), inset 0px 0px 0.5px 0px rgba(255, 255, 255, 0.3), 0px 5px 12px 0px rgba(0, 0, 0, 0.35), inset 0px 0.5px 0px 0px rgba(255, 255, 255, 0.08);
+  --effect-dark-elevation-400-menu-panel: 0px 2px 5px 0px rgba(0, 0, 0, 0.35), inset 0px 0px 0.5px 0px rgba(255, 255, 255, 0.35), 0px 10px 16px 0px rgba(0, 0, 0, 0.35), inset 0px 0.5px 0px 0px rgba(255, 255, 255, 0.08);
+  --effect-dark-elevation-500-modal-window: 0px 3px 5px 0px rgba(0, 0, 0, 0.35), inset 0px 0px 0.5px 0px rgba(255, 255, 255, 0.35), 0px 10px 24px 0px rgba(0, 0, 0, 0.45), inset 0px 0.5px 0px 0px rgba(255, 255, 255, 0.08);
+
+}
+
+[data-theme="dark"] {
+  --primitives-pink-100: #FDE2FB;
+  --primitives-pink-200: #FCCAF8;
+  --primitives-pink-300: #FBB1ED;
+  --primitives-pink-400: #FC9CE0;
+  --primitives-pink-500: #F316B0;
+  --primitives-pink-600: #D01B9C;
+  --primitives-pink-700: #96207A;
+  --primitives-pink-800: #68275E;
+  --primitives-pink-900: #46253E;
+  --primitives-pink-1000: #231A21;
+  --primitives-green-100: #DDFDE2;
+  --primitives-green-200: #BEEFC2;
+  --primitives-green-300: #A1E8B9;
+  --primitives-green-400: #79D297;
+  --primitives-green-500: #198F51;
+  --primitives-green-600: #078348;
+  --primitives-green-700: #0A5C35;
+  --primitives-green-800: #0A4C2D;
+  --primitives-green-900: #082618;
+  --primitives-green-1000: #0B1E15;
+  --primitives-yellow-100: #FDF7DD;
+  --primitives-yellow-200: #FBE8AD;
+  --primitives-yellow-300: #F9DF90;
+  --primitives-yellow-400: #F7D15F;
+  --primitives-yellow-500: #F3C11B;
+  --primitives-yellow-600: #F2B50D;
+  --primitives-yellow-700: #E4A711;
+  --primitives-yellow-800: #C58011;
+  --primitives-yellow-900: #925711;
+  --primitives-yellow-1000: #71440F;
+  --primitives-red-100: #FEE7E7;
+  --primitives-red-200: #FCCDCA;
+  --primitives-red-300: #FBBCB6;
+  --primitives-red-400: #FCA397;
+  --primitives-red-500: #E03E1A;
+  --primitives-red-600: #C4381C;
+  --primitives-red-700: #963323;
+  --primitives-red-800: #7C2622;
+  --primitives-red-900: #54211C;
+  --primitives-red-1000: #311817;
+
+  --semantic-bg-brand-default: var(--primitives-pink-500);
+  --semantic-bg-brand-secondary: var(--primitives-pink-300);
+  --semantic-bg-brand-tertiary: var(--primitives-pink-200);
+  --semantic-bg-brand-subtle: var(--primitives-pink-800);
+  --semantic-bg-default-default: var(--primitives-grey-800);
+  --semantic-bg-default-secondary: var(--primitives-grey-700);
+  --semantic-bg-default-tertiary: var(--primitives-grey-600);
+  --semantic-bg-default-overlay: var(--primitives-white-300);
+  --semantic-bg-default-dark: var(--primitives-grey-900);
+  --semantic-border-brand-default: var(--primitives-pink-700);
+  --semantic-border-brand-strong: var(--primitives-pink-400);
+  --semantic-border-default-default: var(--primitives-grey-600);
+  --semantic-border-default-strong: var(--primitives-white-800);
+  --semantic-border-success-success: var(--primitives-green-700);
+  --semantic-border-warning-warning: var(--primitives-yellow-700);
+  --semantic-border-danger-danger: var(--primitives-red-700);
+  --semantic-icon-and-text-default-default: var(--primitives-white-1000);
+  --semantic-icon-and-text-default-inverse: var(--primitives-black-800);
+  --semantic-icon-and-text-default-secondary: var(--primitives-white-500);
+  --semantic-icon-and-text-default-disabled: var(--primitives-white-400);
+  --semantic-icon-and-text-default-light: var(--primitives-white-1000);
+  --semantic-icon-and-text-brand-default: var(--primitives-pink-400);
+  --semantic-icon-and-text-brand-secondary: var(--primitives-pink-600);
+  --semantic-icon-and-text-success-default: var(--primitives-green-500);
+  --semantic-icon-and-text-warning-default: var(--primitives-yellow-500);
+  --semantic-icon-and-text-danger-default: var(--primitives-red-500);
+
+}

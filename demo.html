@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vertex Finance — Dashboard Demo</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-base: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #f1f5f9;
+      --border-card: #e2e8f0;
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      
+      --color-primary: #6366f1;
+      --color-primary-hover: #4f46e5;
+      --color-primary-light: #e0e7ff;
+      
+      --color-success: #10b981;
+      --color-success-bg: #ecfdf5;
+      --color-success-text: #047857;
+      
+      --color-danger: #ef4444;
+      --color-danger-bg: #fef2f2;
+      --color-danger-text: #b91c1c;
+      
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* SIDEBAR */
+    aside {
+      width: 260px;
+      background-color: var(--bg-card);
+      border-right: 1px solid var(--border-card);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 50;
+      padding: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--color-primary), #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      list-style: none;
+      flex-grow: 1;
+    }
+
+    .nav-item a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+    }
+
+    .nav-item a:hover {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active a {
+      background-color: var(--color-primary-light);
+      color: var(--color-primary-hover);
+    }
+
+    .nav-item-icon {
+      font-size: 16px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      background-color: #e2e8f0;
+      background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80');
+      background-size: cover;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .user-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .user-role {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* MAIN CONTENT */
+    main {
+      margin-left: 260px;
+      flex-grow: 1;
+      padding: 40px;
+      max-width: 1400px;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+
+    .header-title h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .header-title p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 40px;
+      padding: 0 16px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-card);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      border-color: var(--text-muted);
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary);
+      color: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-hover);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* KPI GRID */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .kpi-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--text-muted);
+    }
+
+    .kpi-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .kpi-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .kpi-icon-wrapper {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-base);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .kpi-value {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    /* TAGS / CHIPS */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .chip-success {
+      background-color: var(--color-success-bg);
+      color: var(--color-success-text);
+    }
+
+    .chip-danger {
+      background-color: var(--color-danger-bg);
+      color: var(--color-danger-text);
+    }
+
+    /* PROGRESS BAR */
+    .progress-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .progress-bar-bg {
+      height: 6px;
+      background-color: var(--border-color);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--color-primary);
+      border-radius: var(--radius-full);
+      width: 68%;
+    }
+
+    /* DASHBOARD LAYOUT */
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .dashboard-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dashboard-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* CUSTOM CSS BAR CHART */
+    .chart-container {
+      height: 240px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-top: 20px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 12px;
+    }
+
+    .chart-bar-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      flex-grow: 1;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .chart-bar {
+      width: 28px;
+      background: linear-gradient(to top, var(--color-primary), #818cf8);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .chart-bar:hover {
+      background: linear-gradient(to top, var(--color-primary-hover), #6366f1);
+    }
+
+    /* Tooltip inside bar */
+    .chart-bar::after {
+      content: attr(data-value);
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.8);
+      background-color: var(--text-primary);
+      color: white;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 6px;
+      border-radius: var(--radius-sm);
+      opacity: 0;
+      transition: all 0.2s ease;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .chart-bar:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+      top: -35px;
+    }
+
+    .chart-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* CREDIT CARD VIEW */
+    .credit-card {
+      width: 100%;
+      height: 190px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #1e1b4b 0%, #311042 50%, #030712 100%);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+      padding: 24px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Subtle neon pattern inside card */
+    .credit-card::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -20%;
+      width: 60%;
+      height: 80%;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card-chip {
+      width: 36px;
+      height: 28px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .card-type {
+      font-style: italic;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      opacity: 0.9;
+    }
+
+    .card-number {
+      font-size: 18px;
+      font-family: monospace;
+      letter-spacing: 0.15em;
+      margin: 20px 0;
+      opacity: 0.95;
+    }
+
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .card-holder-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .card-holder-value {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .card-expiry-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 4px;
+      text-align: right;
+      letter-spacing: 0.05em;
+    }
+
+    .card-expiry-value {
+      font-size: 13px;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* TRANSACTIONS & QUICK TRANSFER LAYOUT */
+    .transactions-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+
+    /* TRANSACTION LIST */
+    .transaction-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .transaction-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .transaction-item:hover {
+      border-color: var(--border-card);
+      background-color: #fafafa;
+      transform: translateX(2px);
+    }
+
+    .trans-info-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .trans-icon-bg {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .trans-details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .trans-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .trans-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trans-date {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .trans-tag {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-base);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      text-transform: uppercase;
+    }
+
+    .trans-amount {
+      font-size: 15px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .amount-income {
+      color: var(--color-success-text);
+    }
+
+    .amount-expense {
+      color: var(--text-primary);
+    }
+
+    /* QUICK TRANSFER */
+    .quick-transfer-contacts {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding: 4px 0;
+    }
+
+    .contact-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      flex-grow: 1;
+    }
+
+    .contact-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background-color: var(--border-color);
+      border: 2px solid transparent;
+      background-size: cover;
+      background-position: center;
+      transition: all 0.2s ease;
+    }
+
+    .contact-wrapper:hover .contact-avatar {
+      border-color: var(--color-primary);
+      transform: scale(1.05);
+    }
+
+    .contact-wrapper.selected .contact-avatar {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px var(--color-primary-light);
+    }
+
+    .contact-name {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .transfer-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .input-group {
+      position: relative;
+      width: 100%;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .transfer-input {
+      width: 100%;
+      height: 44px;
+      padding: 0 16px 0 32px;
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text-primary);
+      outline: none;
+      transition: all 0.2s ease;
+      background-color: var(--bg-base);
+    }
+
+    .transfer-input:focus {
+      border-color: var(--color-primary);
+      background-color: white;
+      box-shadow: 0 0 0 3px var(--color-primary-light);
+    }
+
+    .transfer-btn {
+      width: 100%;
+      height: 44px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+    }
+
+    /* INTERACTIVE MODAL FOR ADD TRANSACTION */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background-color: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-card);
+      width: 100%;
+      max-width: 440px;
+      box-shadow: var(--shadow-lg);
+      padding: 32px;
+      position: relative;
+      animation: modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalSlide {
+      from { transform: translateY(10px) scale(0.98); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .form-input {
+      height: 40px;
+      padding: 0 12px;
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      background-color: var(--bg-base);
+    }
+
+    .form-input:focus {
+      border-color: var(--color-primary);
+      background-color: white;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="brand">
+      <div class="brand-icon">V</div>
+      <span class="brand-name">Vertex Finance</span>
+    </div>
+    
+    <ul class="nav-menu">
+      <li class="nav-item active">
+        <a href="#">
+          <span class="nav-item-icon">📊</span>
+          Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#">
+          <span class="nav-item-icon">💸</span>
+          Transactions
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#">
+          <span class="nav-item-icon">📈</span>
+          Analytics
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#">
+          <span class="nav-item-icon">💳</span>
+          Cards
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#">
+          <span class="nav-item-icon">⚙️</span>
+          Settings
+        </a>
+      </li>
+    </ul>
+
+    <div class="user-profile">
+      <div class="user-avatar"></div>
+      <div class="user-info">
+        <span class="user-name">Alex Rivera</span>
+        <span class="user-role">Premium Member</span>
+      </div>
+      <span style="cursor: pointer; color: var(--text-secondary);">⚙️</span>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <header>
+      <div class="header-title">
+        <h1>Dashboard Overview</h1>
+        <p>Welcome back, Alex. Here's your financial overview.</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-secondary">Export data</button>
+        <button class="btn btn-primary" id="openModalBtn">+ New Transaction</button>
+      </div>
+    </header>
+
+    <!-- KPI GRID -->
+    <section class="kpi-grid">
+      <!-- Balance Card -->
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Total Balance</span>
+          <div class="kpi-icon-wrapper" style="color: var(--color-primary);">💵</div>
+        </div>
+        <span class="kpi-value">$45,231.89</span>
+        <div>
+          <span class="chip chip-success">+8.2%</span>
+          <span style="font-size: 12px; color: var(--text-muted); margin-left: 8px;">from last month</span>
+        </div>
+      </div>
+
+      <!-- Income Card -->
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Monthly Income</span>
+          <div class="kpi-icon-wrapper" style="color: var(--color-success-text); background-color: var(--color-success-bg);">💰</div>
+        </div>
+        <span class="kpi-value">$12,450.00</span>
+        <div>
+          <span class="chip chip-success">+14.3%</span>
+          <span style="font-size: 12px; color: var(--text-muted); margin-left: 8px;">vs last quarter</span>
+        </div>
+      </div>
+
+      <!-- Expenses Card -->
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Monthly Expenses</span>
+          <div class="kpi-icon-wrapper" style="color: var(--color-danger-text); background-color: var(--color-danger-bg);">💸</div>
+        </div>
+        <span class="kpi-value">$3,892.40</span>
+        <div>
+          <span class="chip chip-danger">-2.1%</span>
+          <span style="font-size: 12px; color: var(--text-muted); margin-left: 8px;">savings improved</span>
+        </div>
+      </div>
+
+      <!-- Savings Goal Card -->
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Savings Goal</span>
+          <div class="kpi-icon-wrapper" style="color: #ca8a04; background-color: #fef9c3;">🎯</div>
+        </div>
+        <span class="kpi-value">$8,500.00 <span style="font-size: 14px; font-weight: 500; color: var(--text-muted);">/ $12.5k</span></span>
+        <div class="progress-wrapper">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill"></div>
+          </div>
+          <span style="font-size: 11px; color: var(--text-secondary); font-weight: 600;">68% Completed</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MIDDLE LAYOUT (CHART & CREDIT CARD) -->
+    <section class="dashboard-layout">
+      <!-- Chart Card -->
+      <div class="dashboard-card">
+        <div class="dashboard-card-title">
+          <span>Monthly Revenue Analytics</span>
+          <span style="font-size: 12px; color: var(--text-secondary); cursor: pointer; font-weight: 500;">Year 2026 ▾</span>
+        </div>
+        
+        <div class="chart-container">
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 35%;" data-value="$3,500"></div>
+            <span class="chart-label">Jan</span>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 48%;" data-value="$4,800"></div>
+            <span class="chart-label">Feb</span>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 60%;" data-value="$6,000"></div>
+            <span class="chart-label">Mar</span>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 52%;" data-value="$5,200"></div>
+            <span class="chart-label">Apr</span>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 75%;" data-value="$7,500"></div>
+            <span class="chart-label">May</span>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 90%;" data-value="$9,000"></div>
+            <span class="chart-label">Jun</span>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 82%;" data-value="$8,200"></div>
+            <span class="chart-label">Jul</span>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 65%;" data-value="$6,500"></div>
+            <span class="chart-label">Aug</span>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 70%;" data-value="$7,000"></div>
+            <span class="chart-label">Sep</span>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 88%;" data-value="$8,800"></div>
+            <span class="chart-label">Oct</span>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 62%;" data-value="$6,200"></div>
+            <span class="chart-label">Nov</span>
+          </div>
+          <div class="chart-bar-wrapper">
+            <div class="chart-bar" style="height: 95%;" data-value="$9,500"></div>
+            <span class="chart-label">Dec</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Credit Card Card -->
+      <div class="dashboard-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="dashboard-card-title" style="margin-bottom: 12px;">
+          <span>Active Card</span>
+          <span style="font-size: 12px; color: var(--color-primary); cursor: pointer; font-weight: 500;">Manage ➔</span>
+        </div>
+        
+        <!-- Virtual Card Element -->
+        <div class="credit-card">
+          <div class="card-top">
+            <div class="card-chip"></div>
+            <span class="card-type">VISA</span>
+          </div>
+          <div class="card-number">•••• •••• •••• 8842</div>
+          <div class="card-bottom">
+            <div>
+              <div class="card-holder-label">Card Holder</div>
+              <div class="card-holder-value">Alex Rivera</div>
+            </div>
+            <div>
+              <div class="card-expiry-label">Expires</div>
+              <div class="card-expiry-value">12/28</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSACTIONS & QUICK TRANSFER -->
+    <section class="transactions-layout">
+      <!-- Recent Transactions -->
+      <div class="dashboard-card">
+        <div class="dashboard-card-title">
+          <span>Recent Transactions</span>
+          <span style="font-size: 12px; color: var(--text-secondary); cursor: pointer; font-weight: 500;">View All</span>
+        </div>
+        
+        <div class="transaction-list" id="transactionList">
+          <!-- Item 1 -->
+          <div class="transaction-item">
+            <div class="trans-info-group">
+              <div class="trans-icon-bg" style="background-color: #ffe4e6; color: #e11d48;">💳</div>
+              <div class="trans-details">
+                <span class="trans-name">Figma Premium Subscription</span>
+                <div class="trans-meta">
+                  <span class="trans-date">June 15, 2026 • 10:24 AM</span>
+                  <span class="trans-tag">Software</span>
+                </div>
+              </div>
+            </div>
+            <span class="trans-amount amount-expense">-$15.00</span>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="transaction-item">
+            <div class="trans-info-group">
+              <div class="trans-icon-bg" style="background-color: var(--color-success-bg); color: var(--color-success-text);">📥</div>
+              <div class="trans-details">
+                <span class="trans-name">Stripe Payout</span>
+                <div class="trans-meta">
+                  <span class="trans-date">June 14, 2026 • 2:45 PM</span>
+                  <span class="trans-tag">Income</span>
+                </div>
+              </div>
+            </div>
+            <span class="trans-amount amount-income">+$4,250.00</span>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="transaction-item">
+            <div class="trans-info-group">
+              <div class="trans-icon-bg" style="background-color: #fef3c7; color: #d97706;">☕</div>
+              <div class="trans-details">
+                <span class="trans-name">Blue Bottle Coffee</span>
+                <div class="trans-meta">
+                  <span class="trans-date">June 14, 2026 • 8:12 AM</span>
+                  <span class="trans-tag">Food</span>
+                </div>
+              </div>
+            </div>
+            <span class="trans-amount amount-expense">-$4.50</span>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="transaction-item">
+            <div class="trans-info-group">
+              <div class="trans-icon-bg" style="background-color: #f1f5f9; color: var(--text-secondary);">🛒</div>
+              <div class="trans-details">
+                <span class="trans-name">Amazon Store Checkout</span>
+                <div class="trans-meta">
+                  <span class="trans-date">June 12, 2026 • 4:18 PM</span>
+                  <span class="trans-tag">Shopping</span>
+                </div>
+              </div>
+            </div>
+            <span class="trans-amount amount-expense">-$89.99</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Transfer -->
+      <div class="dashboard-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="dashboard-card-title" style="margin-bottom: 16px;">
+          <span>Quick Transfer</span>
+          <span style="font-size: 12px; color: var(--text-muted);">Recent Contacts</span>
+        </div>
+        
+        <div>
+          <!-- Contacts list -->
+          <div class="quick-transfer-contacts">
+            <div class="contact-wrapper selected" data-name="Sarah">
+              <div class="contact-avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80');"></div>
+              <span class="contact-name">Sarah L.</span>
+            </div>
+            <div class="contact-wrapper" data-name="David">
+              <div class="contact-avatar" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80');"></div>
+              <span class="contact-name">David K.</span>
+            </div>
+            <div class="contact-wrapper" data-name="Emma">
+              <div class="contact-avatar" style="background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=80&q=80');"></div>
+              <span class="contact-name">Emma R.</span>
+            </div>
+            <div class="contact-wrapper" data-name="James">
+              <div class="contact-avatar" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=80');"></div>
+              <span class="contact-name">James P.</span>
+            </div>
+          </div>
+          
+          <!-- Amount transfer form -->
+          <div class="transfer-form">
+            <div class="input-group">
+              <span class="input-icon">$</span>
+              <input type="text" class="transfer-input" value="150.00" placeholder="0.00">
+            </div>
+            <button class="btn btn-primary transfer-btn" id="sendBtn">Send Transfer</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ADD TRANSACTION MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModalBtn">&times;</button>
+      <h3 class="modal-title">New Transaction</h3>
+      
+      <div class="modal-form">
+        <div class="form-group">
+          <label for="txName">Description / Name</label>
+          <input type="text" id="txName" class="form-input" placeholder="e.g. Netflix Premium">
+        </div>
+        <div class="form-group">
+          <label for="txCategory">Category</label>
+          <input type="text" id="txCategory" class="form-input" placeholder="e.g. Subscription">
+        </div>
+        <div class="form-group">
+          <label for="txAmount">Amount ($)</label>
+          <input type="number" id="txAmount" class="form-input" placeholder="0.00" step="0.01">
+        </div>
+        <div class="form-group">
+          <label for="txType">Type</label>
+          <select id="txType" class="form-input">
+            <option value="expense">Expense (-)</option>
+            <option value="income">Income (+)</option>
+          </select>
+        </div>
+        
+        <div class="modal-actions">
+          <button class="btn btn-secondary" id="cancelModalBtn">Cancel</button>
+          <button class="btn btn-primary" id="saveTxBtn">Add Transaction</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Elements
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const cancelModalBtn = document.getElementById('cancelModalBtn');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const saveTxBtn = document.getElementById('saveTxBtn');
+    const transactionList = document.getElementById('transactionList');
+    
+    const txNameInput = document.getElementById('txName');
+    const txCategoryInput = document.getElementById('txCategory');
+    const txAmountInput = document.getElementById('txAmount');
+    const txTypeSelect = document.getElementById('txType');
+    
+    // Open modal
+    openModalBtn.addEventListener('click', () => {
+      modalOverlay.classList.add('active');
+    });
+
+    // Close modal
+    const closeModal = () => {
+      modalOverlay.classList.remove('active');
+      txNameInput.value = '';
+      txCategoryInput.value = '';
+      txAmountInput.value = '';
+    };
+
+    closeModalBtn.addEventListener('click', closeModal);
+    cancelModalBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+
+    // Save transaction
+    saveTxBtn.addEventListener('click', () => {
+      const name = txNameInput.value.trim();
+      const category = txCategoryInput.value.trim() || 'General';
+      const amount = parseFloat(txAmountInput.value) || 0;
+      const type = txTypeSelect.value;
+      
+      if (!name || amount <= 0) {
+        alert('Please provide a valid description and amount.');
+        return;
+      }
+
+      // Create transaction item HTML
+      const item = document.createElement('div');
+      item.className = 'transaction-item';
+      
+      const formattedAmount = type === 'income' ? `+$${amount.toFixed(2)}` : `-$${amount.toFixed(2)}`;
+      const amountClass = type === 'income' ? 'amount-income' : 'amount-expense';
+      const icon = type === 'income' ? '📥' : '💳';
+      const iconBg = type === 'income' ? 'var(--color-success-bg)' : '#ffe4e6';
+      const iconColor = type === 'income' ? 'var(--color-success-text)' : '#e11d48';
+
+      item.innerHTML = `
+        <div class="trans-info-group">
+          <div class="trans-icon-bg" style="background-color: ${iconBg}; color: ${iconColor};">${icon}</div>
+          <div class="trans-details">
+            <span class="trans-name">${name}</span>
+            <div class="trans-meta">
+              <span class="trans-date">Today • Just now</span>
+              <span class="trans-tag">${category}</span>
+            </div>
+          </div>
+        </div>
+        <span class="trans-amount ${amountClass}">${formattedAmount}</span>
+      `;
+
+      // Insert at the top of list
+      transactionList.insertBefore(item, transactionList.firstChild);
+      
+      closeModal();
+    });
+
+    // Contact selection in quick transfer
+    const contacts = document.querySelectorAll('.contact-wrapper');
+    contacts.forEach(contact => {
+      contact.addEventListener('click', () => {
+        contacts.forEach(c => c.classList.remove('selected'));
+        contact.classList.add('selected');
+      });
+    });
+
+    // Transfer alert
+    document.getElementById('sendBtn').addEventListener('click', () => {
+      const selectedContact = document.querySelector('.contact-wrapper.selected').getAttribute('data-name');
+      const amount = document.querySelector('.transfer-input').value;
+      alert(`Transfer of $${amount} sent to ${selectedContact} successfully!`);
+    });
+  </script>
+</body>
+</html>

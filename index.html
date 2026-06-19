@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spek — Instant screen specs for faster Design QA</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <meta name="description" content="Get screen specs instantly. Inspect elements, capture CSS values, and communicate adjustments faster to streamline your Design QA process." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-theme="dark" class="spek-v2">
+  
+  <!-- BACKGROUND EFFECTS -->
+  <div class="bg-glow bg-glow-left"></div>
+  <div class="bg-glow bg-glow-right"></div>
+  <div class="bg-grid"></div>
+
+  <!-- NAVIGATION -->
+  <header class="glass-nav">
+    <div class="nav-container">
+      <div class="logo-group">
+        <img src="assets/logo.png" alt="Spek Logo" class="logo-img" />
+        <span class="logo-text">Spek</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#problem">The Problem</a>
+        <a href="#features">Features</a>
+        <a href="#donate">Support the project</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="https://chromewebstore.google.com/detail/spek/cfhbhhinhgdnhlhmnkkgmfgmeddamhnd" target="_blank" rel="noreferrer" class="ds-button ds-button--primary nav-cta" style="text-decoration: none;">Add to Chrome</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Design QA made efficient
+        </div>
+        <h1 class="hero-headline">
+          Get screen specs instantly.<br/>Communicate adjustments faster.
+        </h1>
+        <p class="hero-subheadline">
+          Capture exact dimensions, gaps, colors, and fonts directly from your browser, reducing adjustment turnaround times and making the Design QA process highly efficient.
+        </p>
+        <div class="hero-cta-group">
+          <a href="https://chromewebstore.google.com/detail/spek/cfhbhhinhgdnhlhmnkkgmfgmeddamhnd" target="_blank" rel="noreferrer" class="ds-button ds-button--primary ds-button--large cta-glow" style="text-decoration: none; display: inline-flex;">
+            Download Extension For Free
+          </a>
+          <a href="#problem" class="cta-text">See how it works ↓</a>
+        </div>
+
+        <div class="hero-visual-wrapper">
+          <div class="glass-panel mockup-panel">
+            <div class="mockup-header">
+              <div class="window-controls">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="window-title">designreview.app — localhost:3000</div>
+            </div>
+            <div class="mockup-body">
+
+              <!-- LEFT: Browser Content being inspected -->
+              <div class="mockup-browser">
+                <!-- Fake webpage content -->
+                <div class="fake-page">
+                  <div class="fake-navbar">
+                    <div class="fake-logo-bar"></div>
+                    <div class="fake-nav-items">
+                      <div class="fake-nav-item"></div>
+                      <div class="fake-nav-item"></div>
+                      <div class="fake-nav-item"></div>
+                    </div>
+                  </div>
+                  <div class="fake-page-body">
+                    <!-- The selected card element -->
+                    <div class="selected-element" id="selected-el">
+                      <div class="sel-el-img"></div>
+                      <div class="sel-el-text">
+                        <div class="sel-el-title"></div>
+                        <div class="sel-el-line"></div>
+                        <div class="sel-el-line short"></div>
+                      </div>
+                    </div>
+                    <!-- Another card next to it (to show gap) -->
+                    <div class="ghost-element">
+                      <div class="ghost-img"></div>
+                      <div class="ghost-text">
+                        <div class="ghost-title"></div>
+                        <div class="ghost-line"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SPEK OVERLAY — drawn over the selected element -->
+                <div class="spek-overlay">
+                  <!-- Handles (4 corners) -->
+                  <div class="spek-handle spek-handle--tl"></div>
+                  <div class="spek-handle spek-handle--tr"></div>
+                  <div class="spek-handle spek-handle--bl"></div>
+                  <div class="spek-handle spek-handle--br"></div>
+                  <!-- Width chip: top-center, pink -->
+                  <div class="spek-chip spek-chip--width">148</div>
+                  <!-- Height chip: right-center, pink -->
+                  <div class="spek-chip spek-chip--height">96</div>
+                  <!-- Gap chip: yellow, positioned between the two cards -->
+                  <div class="spek-chip spek-chip--gap">16</div>
+                </div>
+              </div>
+
+              <!-- RIGHT: Spek Side Panel -->
+              <div class="spek-panel">
+                <!-- Panel Header -->
+                <div class="spek-panel-header">
+                  <div class="spek-avatar">
+                    <div class="spek-avatar-img"></div>
+                  </div>
+                  <span class="spek-logo-label">Spek</span>
+                  <button class="spek-share-btn" type="button">Share</button>
+                </div>
+
+                <!-- Runtime Toggle -->
+                <div class="spek-runtime">
+                  <div class="spek-toggle">
+                    <div class="spek-toggle-track active">
+                      <div class="spek-toggle-knob"></div>
+                    </div>
+                  </div>
+                  <span class="spek-status">Inspecting elements</span>
+                </div>
+
+                <!-- Element section -->
+                <div class="spek-section">
+                  <div class="spek-section-label">Element</div>
+                  <div class="spek-input spek-input--full">
+                    <span class="spek-input-value">div.card.selected</span>
+                  </div>
+                </div>
+
+                <!-- Box section -->
+                <div class="spek-section">
+                  <div class="spek-section-label">Box</div>
+                  <div class="spek-fields-row">
+                    <div class="spek-field">
+                      <span class="spek-field-icon">↔</span>
+                      <span class="spek-field-value corrected">148</span>
+                    </div>
+                    <div class="spek-field">
+                      <span class="spek-field-icon">↕</span>
+                      <span class="spek-field-value">96</span>
+                    </div>
+                  </div>
+                  <div class="spek-fields-row">
+                    <div class="spek-field">
+                      <span class="spek-field-icon spek-gap-icon">⇔</span>
+                      <span class="spek-field-value corrected">16</span>
+                    </div>
+                    <div class="spek-field">
+                      <span class="spek-field-icon">◱</span>
+                      <span class="spek-field-value">8</span>
+                    </div>
+                  </div>
+                  <div class="spek-fields-row">
+                    <div class="spek-field spek-color-field">
+                      <div class="spek-swatch" style="background: #1E1E1E;"></div>
+                      <span class="spek-field-value spek-hex">#1E1E1E</span>
+                    </div>
+                    <div class="spek-field">
+                      <span class="spek-field-icon spek-opacity-icon">◎</span>
+                      <span class="spek-field-value">100%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section id="problem" class="problem-section">
+      <div class="container">
+        <div class="section-header center">
+          <h2 class="section-title">The Cost of "Close Enough".</h2>
+          <p class="section-subtitle">The gap between Design and Development leads to rework in every sprint. Subjective feedback is not a bug report.</p>
+        </div>
+
+        <div class="comparison-grid">
+          <!-- BAD -->
+          <div class="glass-card comparison-card old-way">
+            <div class="card-header">
+              <span class="status-badge bad">The Old Way</span>
+            </div>
+            <h3 class="card-title">"This looks a bit off..."</h3>
+            <div class="chat-mockup">
+              <div class="chat-bubble designer">
+                <p>The blue button looks a bit cramped.</p>
+              </div>
+              <div class="chat-bubble dev">
+                <p>Which button? On the home page? It looks just like Figma.</p>
+              </div>
+              <div class="chat-bubble designer">
+                <p>Yes. I think the padding is 16px and it should be 24px.</p>
+              </div>
+            </div>
+            <p class="card-desc">Screenshots don't have CSS. Developers waste several minutes searching for what you spotted in 2 seconds.</p>
+          </div>
+
+          <!-- GOOD -->
+          <div class="glass-card comparison-card new-way">
+            <div class="card-header">
+              <span class="status-badge good">With Spek</span>
+            </div>
+            <h3 class="card-title">A few clicks. Complete context.</h3>
+            <div class="spek-output-bubble">
+              <div class="spek-output-header">
+                <img src="assets/logo.png" alt="Spek Logo" width="16" height="16" style="border-radius: 4px;" />
+                <span class="spek-output-title">Spek generated</span>
+              </div>
+              <div class="spek-output-content">
+                <pre>Requested changes: padding: 24px
+Page: Home Page https://www.vertexfinance.com 1920 x 960
+Target: div.css-175oi2r, Visible text: "New Transaction"</pre>
+              </div>
+              <div class="spek-output-attachment">
+                <div class="attachment-thumbnail">
+                  <img src="assets/spek-example.png" alt="Spek Example Selection" />
+                </div>
+                <span class="attachment-label">Attached image</span>
+              </div>
+            </div>
+            <p class="card-desc">Spek captures the elements, you review and adjust whatever is needed, and then Spek generates the complete spec.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SHOWCASE -->
+    <section id="features" class="features-section">
+      <div class="container">
+
+
+        <div class="feature-showcase-container">
+          <!-- Showcase 1 -->
+          <div class="feature-showcase">
+            <div class="feature-text">
+              <h3>X-Ray Vision</h3>
+              <p>Hover over any element on screen to instantly reveal margins, paddings, gaps, colors, and typography. No more digging through minified CSS in browser DevTools.</p>
+            </div>
+            <div class="feature-visual">
+              <video src="assets/xray.mp4" autoplay loop muted playsinline class="showcase-video"></video>
+            </div>
+          </div>
+
+          <!-- Showcase 2 -->
+          <div class="feature-showcase reverse">
+            <div class="feature-text">
+              <h3>Design-to-Dev Translator</h3>
+              <p>Friendly and easy interface for designers, clear and structured outputs for developers.</p>
+            </div>
+            <div class="feature-visual">
+              <video src="assets/translator.mp4" autoplay loop muted playsinline class="showcase-video"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONATE SECTION -->
+    <section id="donate" class="donate-section">
+      <div class="container">
+        <div class="glass-card donate-card donate-layout">
+          <div class="donate-illustration">
+            <img src="assets/coffee.png" alt="Neon coffee cup" class="coffee-img" />
+          </div>
+          <div class="donate-content">
+            <h2 class="donate-title">Support the project, buy me a coffee!</h2>
+            <p class="donate-text">Spek is 100% free. If this tool is saving you hours of design QA, consider buying me a coffee to keep the updates flowing!</p>
+            <div class="donate-buttons">
+              <a href="https://ko-fi.com/pietrobampi" target="_blank" rel="noreferrer" class="ds-button ds-button--primary donate-btn kofi-btn" style="text-decoration: none; display: inline-flex;">
+                <span>Buy me a Coffee</span>
+              </a>
+              <button class="ds-button ds-button--secondary donate-btn pix-btn" type="button">
+                <span>Support via Pix</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-group">
+            <img src="assets/logo.png" alt="Spek Logo" class="logo-img" />
+            <span class="logo-text">Spek</span>
+          </div>
+          <p class="footer-slogan">Design QA made efficient</p>
+        </div>
+        <div class="footer-links-group">
+          <h4>Product</h4>
+          <a href="https://chromewebstore.google.com/detail/spek/cfhbhhinhgdnhlhmnkkgmfgmeddamhnd" target="_blank" rel="noreferrer">Chrome Web Store</a>
+        </div>
+        <div class="footer-links-group">
+          <h4>Legal</h4>
+          <a href="https://drive.google.com/file/d/1p2aIIPk5f7WdxFLZucdjq1Ik0hMluiVA/view?usp=sharing" target="_blank" rel="noreferrer">Privacy Policy</a>
+        </div>
+        <div class="footer-links-group">
+          <h4>Contact</h4>
+          <a href="https://pietrobampi.framer.website/" target="_blank" rel="noreferrer">Website</a>
+          <a href="https://www.linkedin.com/in/pietrobampi/" target="_blank" rel="noreferrer">Linkedin</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Spek. Designed and developed by <a href="https://pietrobampi.framer.website/" target="_blank" rel="noreferrer" style="color: var(--neon-pink); text-decoration: none; font-weight: 500;">Pietro Bampi</a>.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- PIX MODAL -->
+  <div id="pix-modal" class="modal-overlay">
+    <div class="glass-card modal-content">
+      <button id="close-modal" class="modal-close" aria-label="Close modal">&times;</button>
+      <h3 class="modal-title">Thanks for using Spek and for the coffee! 💚💛</h3>
+      <div class="qr-container">
+        <img src="assets/pix-qr.png" alt="Pix QR Code" class="qr-code" />
+      </div>
+      <p class="modal-text"><strong>For our Brazilian supporters:</strong> please scan the QR code using your bank's app to complete your donation via Pix.</p>
+    </div>
+  </div>
+
+  <script>
+    const pixBtn = document.querySelector('.pix-btn');
+    const modal = document.getElementById('pix-modal');
+    const closeBtn = document.getElementById('close-modal');
+
+    if (pixBtn && modal && closeBtn) {
+      pixBtn.addEventListener('click', () => {
+        modal.classList.add('active');
+      });
+
+      closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
